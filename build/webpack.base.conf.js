@@ -1,12 +1,27 @@
-var path = require('path')
-var config = require('../config')
-var utils = require('./utils')
-var projectRoot = path.resolve(__dirname, '../')
+var path = require('path');
+var config = require('../config');
+var utils = require('./utils');
+var projectRoot = path.resolve(__dirname, '../');
+var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main.js',
+    vendor: [
+      'jquery',
+      'bootstrap-sass/assets/javascripts/bootstrap.min.js'
+    ]
   },
+  plugins: [
+        new webpack.ProvidePlugin({
+            jQuery: "jquery",
+            'window.Tether': 'tether'
+        }),
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js', Infinity),
+        new ExtractTextPlugin("style.css"),
+    ],
   output: {
     path: config.build.assetsRoot,
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
@@ -70,6 +85,14 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+      },
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
       }
     ]
   },
@@ -84,4 +107,4 @@ module.exports = {
       })
     ]
   }
-}
+};

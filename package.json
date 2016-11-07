@@ -2,7 +2,7 @@
   "name": "let-s-go-front-end",
   "version": "1.0.0",
   "description": "The front end of let's go.",
-  "author": "helloqiu <helloqiu95@gmail.com>",
+  "author": "NoneGroupTeam https://github.com/NoneGroupTeam",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -10,7 +10,12 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "vue": "^2.0.1"
+    "bootstrap-sass": "^3.3.7",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "jquery": "^3.1.1",
+    "sass-loader": "^4.0.2",
+    "vue": "^2.0.1",
+    "vue-router": "^2.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
