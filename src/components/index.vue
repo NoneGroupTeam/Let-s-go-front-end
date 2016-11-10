@@ -1,15 +1,26 @@
 <template>
   <div id="index">
-    <h1>index page</h1>
+    <navbar></navbar>
   </div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        // return data here
-      };
-    },
-  };
+import Navbar from './navbar';
+
+/* eslint-disable no-undef */
+export default {
+  components: {
+    Navbar,
+  },
+  created: function changeBodyStyle() {
+    document.getElementsByTagName('body')[0].className = 'body-index';
+  },
+};
 </script>
+
+<style>
+  .body-index
+  {
+    background-color: #fff
+  }
+</style>
