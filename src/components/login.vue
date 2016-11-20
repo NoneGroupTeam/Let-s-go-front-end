@@ -40,26 +40,36 @@ export default {
         username: '',
         password: '',
       },
+      logined: false,
+      username: '',
+      userid: -1,
     };
   },
   created: function changeBodyStyle() {
     document.getElementsByTagName('body')[0].className = 'body-login';
   },
+  mounted() {
+    this.logined = this.$store.getters.getLogin;
+    this.username = this.$store.getters.getUsername;
+    this.userid = this.$store.getters.getUserid;
+    if (this.logined === true) {
+      this.$router.push({ path: '/index' });
+    }
+  },
   methods: {
     login() {
-      this.$http.post('http://letsgo.lc4t.me:8000/api/user/login/', this.postData)
+      this.$http.post('/api/user/login/', this.postData)
       .then((response) => {
         this.serverCheck(response);
       });
     },
     serverCheck(response) {
-      console.log(response.headers);
-      // if (response.data.status === false) {
-      //   alert(response.data.message);
-      // } else {
-      //   console.log(response.headers);
-      //   // this.$router.push({ path: '/index' });
-      // }
+      if (response.data.status === false) {
+        alert(response.data.message);
+      } else {
+        this.$store.dispatch('setLogin', true);
+        this.$router.push({ path: '/index' });
+      }
     },
   },
 };

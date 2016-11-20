@@ -5,16 +5,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <router-link to="/"><img id="logo-with-font" src="../assets/img/logo-with-font.png" class="logo"></router-link>
           <ul class="nav navbar-nav navbar-right">
-
-            <li v-if="login"><router-link to="/" class="navbar-text">首页</router-link></li>
+            <li v-if="logined"><router-link to="/" class="navbar-text">首页</router-link></li>
             <li v-else><router-link to="/login" class="navbar-text">登录</router-link></li>
-            <li v-if="login"><router-link to="/user/profile" class="navbar-text">个人中心</router-link></li>
+            <li v-if="logined"><router-link to="/profile" class="navbar-text">个人中心</router-link></li>
             <li v-else><router-link to="/regist" class="navbar-text">注册</router-link></li>
-            <li v-if="login"><router-link to="/user/logout" class="navbar-text">退出</router-link></li>
-
-
-
-
+            <li v-if="logined"><router-link to="/logout" class="navbar-text">退出</router-link></li>
           </ul>
         </div>
       </div>
@@ -27,8 +22,13 @@
   export default {
     data() {
       return {
-        login: false,
+        logined: false,
       };
+    },
+    mounted() {
+      this.logined = this.$store.getters.getLogin;
+      // this.username = this.$store.getters.getUsername;
+      // this.userid = this.$store.getters.getUserid;
     },
   };
 </script>

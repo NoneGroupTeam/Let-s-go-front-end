@@ -9,11 +9,24 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: {
     app: './src/main.js',
+    proxy: 'webpack/hot/dev-server',
     vendor: [
       'jquery',
       'bootstrap-sass/assets/javascripts/bootstrap.min.js'
     ]
   },
+  devServer: {
+    hot: true,
+    inline: true,
+		proxy: {
+	        '/api': {
+	          target: 'http://127.0.0.1:8000',
+            host: '127.0.0.1:8000',
+            secure: false,
+	          changeOrigin: true
+	        },
+	     }
+	},
   plugins: [
         new webpack.ProvidePlugin({
             jQuery: "jquery",

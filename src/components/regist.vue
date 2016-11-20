@@ -60,9 +60,17 @@ export default {
   created: function changeBodyStyle() {
     document.getElementsByTagName('body')[0].className = 'body-regist';
   },
+  mounted() {
+    this.logined = this.$store.getters.getLogin;
+    this.username = this.$store.getters.getUsername;
+    this.userid = this.$store.getters.getUserid;
+    if (this.logined === true) {
+      this.$router.push({ path: '/index' });
+    }
+  },
   methods: {
     reg() {
-      this.$http.post('http://letsgo.lc4t.me:8000/api/user/register/', this.postData)
+      this.$http.post('/api/user/register/', this.postData)
       .then((response) => {
         this.serverCheck(response);
       });
