@@ -28,8 +28,20 @@ export default {
     Place,
     Foot,
   },
+  data() {
+    return {
+      logined: false,
+      username: '',
+      userid: -1,
+    };
+  },
   created: function changeBodyStyle() {
     document.getElementsByTagName('body')[0].className = 'body-index';
+  },
+  mounted() {
+    this.logined = this.$store.getters.getLogin;
+    this.username = this.$store.getters.getUsername;
+    this.userid = this.$store.getters.getUserid;
   },
 };
 </script>

@@ -8,17 +8,17 @@
         </div>
       <div>
       <div class="form-group col-md-10">
-        <input type="text" class="form-control login-box" id="username" placeholder="用户名">
+        <input type="text" class="form-control login-box" id="username" v-model="postData.username" placeholder="用户名">
       </div>
       <div class="form-group col-md-10">
-        <input type="password" class="form-control login-box" id="password" placeholder="密码">
+        <input type="password" class="form-control login-box" id="password" v-model="postData.password" placeholder="密码">
       </div>
       <div class="form-group checkbox col-md-10">
         <label class="login-check">
           <input id="remenber" type="checkbox">记住密码</input>
         </label>
       </div>
-      <button type="submit" class="login-button btn center-block">Login</button>
+      <button type="button" class="login-button btn center-block" v-on:click="login">Login</button>
       <div id="login-help">
         <br/>
         <p class="text-right">
@@ -32,13 +32,45 @@
 
 <script>
 /* eslint-disable no-undef */
+/* eslint-disable no-alert */
 export default {
   data() {
     return {
+      postData: {
+        username: '',
+        password: '',
+      },
+      logined: false,
+      username: '',
+      userid: -1,
     };
   },
   created: function changeBodyStyle() {
     document.getElementsByTagName('body')[0].className = 'body-login';
+  },
+  mounted() {
+    this.logined = this.$store.getters.getLogin;
+    this.username = this.$store.getters.getUsername;
+    this.userid = this.$store.getters.getUserid;
+    if (this.logined === true) {
+      this.$router.push({ path: '/index' });
+    }
+  },
+  methods: {
+    login() {
+      this.$http.post('/api/user/login/', this.postData)
+      .then((response) => {
+        this.serverCheck(response);
+      });
+    },
+    serverCheck(response) {
+      if (response.data.status === false) {
+        alert(response.data.message);
+      } else {
+        this.$store.dispatch('setLogin', true);
+        this.$router.push({ path: '/index' });
+      }
+    },
   },
 };
 </script>
@@ -91,21 +123,21 @@ export default {
     margin-left: 10%;
     margin-top: 10%;
     border-radius: 5px;
-    background-color: rgba(143, 143, 143, 0.2)
+    background-color: rgba(143, 143, 143, 0.2);
   }
   .login-button
   {
     padding-left: 20%;
     padding-right: 20%;
-    background-color: rgba(160, 160, 160, 0.8)
+    background-color: rgba(160, 160, 160, 0.8);
   }
   .login-check
   {
     margin-left: 15%;
-    color: rgba(149, 149, 149, 0.8)
+    color: rgba(149, 149, 149, 0.8);
   }
   .text-help
   {
-    color: rgba(0, 0, 0, 0.5)
+    color: rgba(0, 0, 0, 0.5);
   }
 </style>
