@@ -8,28 +8,72 @@
         </div>
       <div>
       <div class="form-group col-md-10">
-        <input type="text" class="form-control regist-box" id="username" placeholder="用户名">
+        <input type="text" class="form-control regist-box" id="username" v-model="postData.username" placeholder="用户名">
       </div>
       <div class="form-group col-md-10">
-        <input type="password" class="form-control regist-box" id="password" placeholder="密码">
+        <input type="password" class="form-control regist-box" id="password" v-model="postData.password" placeholder="密码">
+      </div>
+      <!-- <div class="form-group col-md-10">
+        <input type="password" class="form-control regist-box" id="password-confirm" v-model="password-confirm" placeholder="确认密码">
+      </div> -->
+      <div class="form-group col-md-10">
+        <input type="email" class="form-control regist-box" id="email" v-model="postData.email"  placeholder="Email">
       </div>
       <div class="form-group col-md-10">
-        <input type="password" class="form-control regist-box" id="password-confirm" placeholder="确认密码">
+        <input type="text" class="form-control regist-box" id="phone" v-model="postData.phone" placeholder="手机号">
       </div>
-      <button type="submit" class="regist-button btn center-block">Regist</button>
+      <div class="form-group col-md-10">
+        <input type="text" class="form-control regist-box" id="birthday" v-model="postData.birthday" placeholder="出生日期">
+      </div>
+      <div class="form-group col-md-10 radio">
+        <label class="regist-choice">
+          <input type="radio" name="gender" id="gender-1" value="1" v-model="postData.gender">男
+        </label>
+      </div>
+      <div class="form-group col-md-10 radio">
+        <label class="regist-choice">
+          <input type="radio" name="gender" id="gender-0" value="0" v-model="postData.gender">女
+        </label>
+      </div>
+      <button type="button" class="regist-button btn center-block" v-on:click="reg">Regist</button>
     </form>
   </div>
 </template>
 
 <script>
 /* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-alert */
 export default {
   data() {
     return {
+      postData: {
+        username: '',
+        password: '',
+        email: '',
+        phone: '',
+        gender: '',
+        birthday: '',
+      },
     };
   },
   created: function changeBodyStyle() {
     document.getElementsByTagName('body')[0].className = 'body-regist';
+  },
+  methods: {
+    reg() {
+      this.$http.post('http://letsgo.lc4t.me:8000/api/user/register/', this.postData)
+      .then((response) => {
+        this.serverCheck(response);
+      });
+    },
+    serverCheck(response) {
+      if (response.data.status === false) {
+        alert(response.data.message);
+      } else {
+        this.$router.push({ path: '/login' });
+      }
+    },
   },
 };
 </script>
@@ -83,6 +127,11 @@ export default {
     margin-top: 10%;
     border-radius: 5px;
     background-color: rgba(143, 143, 143, 0.2)
+  }
+  .regist-choice
+  {
+    margin-left: 15%;
+    color: rgba(149, 149, 149, 0.8);
   }
   .regist-button
   {
