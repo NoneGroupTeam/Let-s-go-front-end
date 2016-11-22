@@ -23,7 +23,7 @@
         <input type="text" class="form-control regist-box" id="phone" v-model="postData.phone" placeholder="手机号">
       </div>
       <div class="form-group col-md-10">
-        <input type="text" class="form-control regist-box" id="birthday" v-model="postData.birthday" placeholder="出生日期">
+        <input type="date" class="form-control regist-box" id="birthday" v-model="postData.birthday" placeholder="出生日期">
       </div>
       <div class="form-group col-md-10 radio">
         <label class="regist-choice">

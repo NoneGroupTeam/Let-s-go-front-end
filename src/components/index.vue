@@ -14,7 +14,7 @@
 import Navbar from './navbar';
 import Carousel from './carousel';
 import Subtitle from './subtitle';
-import Guide from './guide';
+import Guide from './index_guide';
 import Place from './place';
 import Foot from './foot';
 
