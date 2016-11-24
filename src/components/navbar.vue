@@ -9,7 +9,9 @@
             <li v-else><router-link to="/login" class="navbar-text">登录</router-link></li>
             <li v-if="logined"><router-link to="/profile" class="navbar-text">个人中心</router-link></li>
             <li v-else><router-link to="/regist" class="navbar-text">注册</router-link></li>
-            <li v-if="logined"><router-link to="/logout" class="navbar-text">退出</router-link></li>
+            <li v-if="logined"><router-link to="/guide" class="navbar-text">攻略</router-link></li>
+            <li v-if="logined"><router-link to="/question" class="navbar-text">问答</router-link></li>
+            <li v-if="logined"><router-link to="/logout" class="navbar-text">注销</router-link></li>
           </ul>
         </div>
       </div>

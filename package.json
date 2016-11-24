@@ -11,9 +11,11 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "autosize": "^3.0.18",
     "bootstrap-sass": "^3.3.7",
     "extract-text-webpack-plugin": "^1.0.1",
     "jquery": "^3.1.1",
+    "marked": "^0.3.6",
     "node-sass": "^3.11.2",
     "sass-loader": "^4.0.2",
     "vue": "^2.0.1",

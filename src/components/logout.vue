@@ -2,9 +2,6 @@
 </template>
 
 <script>
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-alert */
 export default {
   data() {
     return {

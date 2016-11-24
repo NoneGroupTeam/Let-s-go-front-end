@@ -1,15 +1,15 @@
 <template>
-  <div id="guide">
+  <div id="question">
     <navbar></navbar>
     <ol class="breadcrumb">
-      <li><b><router-link to="/guide">所有攻略</router-link></b></li>
-      <li><router-link to="/guide/me">我的攻略</router-link></li>
-      <li><router-link to="/guide/add">发表攻略</router-link></li>
+      <li><b><router-link to="/question">所有提问</router-link></b></li>
+      <li><router-link to="/question/me">我的提问</router-link></li>
+      <li><router-link to="/question/add">提出问题</router-link></li>
     </ol>
-    <div id="guide-list">
+    <div id="question-list">
       <ul>
         <li v-for="item in items">
-          <item :to=geturl(item.id) :img=item.img :title=item.title :labels=item.labels :place=item.place :username=item.username :count=item.pageview></item>
+          <item :to=geturl(item.id) :img=item.img :title=item.title :labels=item.labels :place=item.place :username=item.username :count=item.answer></item>
         </li>
       </ul>
     </div>
@@ -57,10 +57,10 @@ export default {
   },
   methods: {
     geturl(id) {
-      return `/guide/${id}`;
+      return `/question/${id}`;
     },
     getData() {
-      this.$http.post('/api/guide/list/', this.qData)
+      this.$http.post('/api/question/list/', this.qData)
       .then((response) => {
         this.serverCheck(response);
       });
