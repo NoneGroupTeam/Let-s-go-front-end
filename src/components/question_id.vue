@@ -80,7 +80,6 @@ export default {
       });
     },
     comment() {
-      console.log(this.content);
       const id = this.$route.params.id;
       this.$http.post(`/api/question/${id}/comment/`, { content: this.content })
       .then((response) => {
