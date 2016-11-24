@@ -4,15 +4,13 @@
       <tbody><tr>
           <td width="48" valign="top" align="center"><img v-bind:src="img" class="avatar" border="0" align="default"></td>
           <td width="10"></td>
-          <td width="auto" valign="middle"><span class="item_title"><router-link v-bind:to="to">{{title}}</router-link></span>
-          <span class="label label-primary m">{{place}}</span>
-          <span class="label label-info m" v-for="name in labels">{{name}}</span>
+          <td width="auto" valign="middle"><span class="item_title">{{content}}</span>
           <span class="fade m">
             <strong><p>{{username}}</p></strong>
           </span>
           </td>
           <td width="70" align="right" valign="middle">
-            <span class="label label-default">{{count}}</span>
+            <span class="label label-default">{{submit}}</span>
           </td>
       </tr>
   </tbody></table>
@@ -26,13 +24,10 @@ export default {
     };
   },
   props: [
-    'to',
     'img',
-    'title',
-    'labels',
+    'content',
     'username',
-    'place',
-    'count',
+    'submit',
   ],
 };
 </script>

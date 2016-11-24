@@ -32,7 +32,7 @@
       </div>
     </form>
     <div id="editor">
-      <textarea id='text' ref="text" :value="postData.content" v-on:input="update" rows="25"></textarea>
+      <textarea id='text' ref="text" :value="postData.content" v-on:input="update" rows="40"></textarea>
       <div id="view" v-html="compiledMarkdown"></div>
     </div>
     <div class="text-center">
@@ -159,7 +159,8 @@ export default {
       if (response.data.status === false) {
         alert(response.data.message);
       } else {
-        alert('success');
+        alert('success, enter to list');
+        this.$router.push({ path: '/guide' });
       }
     },
   },

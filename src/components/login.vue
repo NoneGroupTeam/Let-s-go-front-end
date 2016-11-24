@@ -13,11 +13,11 @@
       <div class="form-group col-md-10">
         <input type="password" class="form-control login-box" id="password" v-model="postData.password" placeholder="密码">
       </div>
-      <div class="form-group checkbox col-md-10">
+      <!-- <div class="form-group checkbox col-md-10">
         <label class="login-check">
           <input id="remenber" type="checkbox">记住密码</input>
         </label>
-      </div>
+      </div> -->
       <button type="button" class="login-button btn center-block" v-on:click="login">Login</button>
       <div id="login-help">
         <br/>
